@@ -10,7 +10,7 @@ package world.jumo.loan.validate;
 import java.time.Month;
 
 /**
- *
+ * a class that represents a group-by clause for a {@link Loan}
  */
 public class NetworkProductMonthGroup {
 
@@ -24,47 +24,6 @@ public class NetworkProductMonthGroup {
         this.network = network;
         this.product = product;
         this.month = month;
-    }
-
-    public String getNetwork() {
-
-        return network;
-    }
-
-    public void setNetwork(String network) {
-
-        this.network = network;
-    }
-
-    public String getProduct() {
-
-        return product;
-    }
-
-    public void setProduct(String product) {
-
-        this.product = product;
-    }
-
-    public Month getMonth() {
-
-        return month;
-    }
-
-    public void setMonth(Month month) {
-
-        this.month = month;
-    }
-
-    @Override
-    public int hashCode() {
-
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((month == null) ? 0 : month.hashCode());
-        result = prime * result + ((network == null) ? 0 : network.hashCode());
-        result = prime * result + ((product == null) ? 0 : product.hashCode());
-        return result;
     }
 
     @Override
@@ -96,6 +55,47 @@ public class NetworkProductMonthGroup {
         else if ( !product.equals(other.product))
             return false;
         return true;
+    }
+
+    public Month getMonth() {
+
+        return month;
+    }
+
+    public String getNetwork() {
+
+        return network;
+    }
+
+    public String getProduct() {
+
+        return product;
+    }
+
+    @Override
+    public int hashCode() {
+
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((month == null) ? 0 : month.hashCode());
+        result = prime * result + ((network == null) ? 0 : network.hashCode());
+        result = prime * result + ((product == null) ? 0 : product.hashCode());
+        return result;
+    }
+
+    public void setMonth(Month month) {
+
+        this.month = month;
+    }
+
+    public void setNetwork(String network) {
+
+        this.network = network;
+    }
+
+    public void setProduct(String product) {
+
+        this.product = product;
     }
 
 }

@@ -22,15 +22,15 @@ public class Count implements Aggregate<BigDecimal> {
     }
 
     @Override
-    public void put(BigDecimal value) {
-
-        result = result.add(BigDecimal.ONE);
-    }
-
-    @Override
     public BigDecimal get() {
 
         return result;
+    }
+
+    @Override
+    public void put(BigDecimal value) {
+
+        result = result.add(BigDecimal.ONE);
     }
 
 }

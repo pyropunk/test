@@ -7,7 +7,8 @@
 
 package world.jumo.loan.validate;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.reducing;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -30,10 +31,8 @@ import java.util.stream.Collectors;
  */
 public class Streams {
 
-    private static final Logger LOG = Logger.getLogger(Streams.class.getName());
-
     /**
-     *
+     * multiple aggregates in one class
      */
     static class SumCount {
 
@@ -59,13 +58,7 @@ public class Streams {
         }
     }
 
-    /**
-     * 
-     */
-    public Streams() {
-
-        super();
-    }
+    private static final Logger LOG = Logger.getLogger(Streams.class.getName());
 
     public static void main(String[] args) {
 
@@ -81,7 +74,7 @@ public class Streams {
                     .collect(groupingBy(Function.identity(),
                         () -> new TreeMap<>(
                             Comparator.<Loan, String> comparing(Loan::getNetwork).thenComparing(Loan::getProduct).thenComparing(l -> l.getDate().getMonth())),
-                        Collectors.reducing(new SumCount(), t -> new SumCount(t.getAmount()), (a, b) -> b.add(a))))
+                        reducing(new SumCount(), t -> new SumCount(t.getAmount()), (a, b) -> b.add(a))))
                     .entrySet()
                     .stream()
                     .map(e -> String.format("%s,%s,'%.3s',%s,%s", e.getKey().getNetwork(), e.getKey().getProduct(),
@@ -93,5 +86,13 @@ public class Streams {
         catch (IOException e) {
             LOG.log(Level.SEVERE, e, () -> String.format("Could not process file %s", args.length > 0 ? args[0] : "./Loans.scv"));
         }
+    }
+
+    /**
+     * 
+     */
+    public Streams() {
+
+        super();
     }
 }

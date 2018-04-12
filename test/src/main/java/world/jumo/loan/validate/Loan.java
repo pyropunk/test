@@ -31,24 +31,9 @@ public class Loan implements Product<BigDecimal> {
         this.amount = amount;
     }
 
-    public String getMsisdn() {
+    public BigDecimal getAmount() {
 
-        return msisdn;
-    }
-
-    public void setMsisdn(String msisdn) {
-
-        this.msisdn = msisdn;
-    }
-
-    public String getNetwork() {
-
-        return network;
-    }
-
-    public void setNetwork(String network) {
-
-        this.network = network;
+        return amount;
     }
 
     public LocalDate getDate() {
@@ -56,9 +41,14 @@ public class Loan implements Product<BigDecimal> {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public String getMsisdn() {
 
-        this.date = date;
+        return msisdn;
+    }
+
+    public String getNetwork() {
+
+        return network;
     }
 
     public String getProduct() {
@@ -66,19 +56,29 @@ public class Loan implements Product<BigDecimal> {
         return product;
     }
 
-    public void setProduct(String product) {
-
-        this.product = product;
-    }
-
-    public BigDecimal getAmount() {
-
-        return amount;
-    }
-
     public void setAmount(BigDecimal amount) {
 
         this.amount = amount;
+    }
+
+    public void setDate(LocalDate date) {
+
+        this.date = date;
+    }
+
+    public void setMsisdn(String msisdn) {
+
+        this.msisdn = msisdn;
+    }
+
+    public void setNetwork(String network) {
+
+        this.network = network;
+    }
+
+    public void setProduct(String product) {
+
+        this.product = product;
     }
 
 }

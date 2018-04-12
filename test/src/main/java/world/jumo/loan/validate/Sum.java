@@ -22,16 +22,16 @@ public class Sum implements Aggregate<BigDecimal> {
     }
 
     @Override
-    public void put(BigDecimal value) {
-
-        result = result.add(value);
-        
-    }
-
-    @Override
     public BigDecimal get() {
 
         return result;
+    }
+
+    @Override
+    public void put(BigDecimal value) {
+
+        result = result.add(value);
+
     }
 
 }

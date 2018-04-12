@@ -10,16 +10,9 @@ package world.jumo.loan.validate;
 /**
  * Interface for all aggregating functions
  * 
- * @param <T> the type that is being aggregated over
+ * @param <T> the type that is being aggregated
  */
 public interface Aggregate<T> {
-
-    /**
-     * Add a value to the aggregate
-     * 
-     * @param value
-     */
-    void put(T value);
 
     /**
      * Retrieve the result of the aggregate function
@@ -27,4 +20,11 @@ public interface Aggregate<T> {
      * @return a value of type T
      */
     T get();
+
+    /**
+     * Add a value to the aggregate
+     * 
+     * @param value
+     */
+    void put(T value);
 }
