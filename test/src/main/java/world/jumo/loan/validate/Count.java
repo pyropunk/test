@@ -10,7 +10,7 @@ package world.jumo.loan.validate;
 import java.math.BigDecimal;
 
 /**
- *
+ * The Count class defines an {@link Aggregate} that count BigDecimal values without looking at the actual value.
  */
 public class Count implements Aggregate<BigDecimal> {
 
@@ -21,11 +21,13 @@ public class Count implements Aggregate<BigDecimal> {
         super();
     }
 
+    @Override
     public void put(BigDecimal value) {
 
         result = result.add(BigDecimal.ONE);
     }
 
+    @Override
     public BigDecimal get() {
 
         return result;

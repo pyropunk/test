@@ -10,7 +10,7 @@ package world.jumo.loan.validate;
 import java.math.BigDecimal;
 
 /**
- *
+ * The Sum class defines an {@link Aggregate} that sums BigDecimal values.
  */
 public class Sum implements Aggregate<BigDecimal> {
 

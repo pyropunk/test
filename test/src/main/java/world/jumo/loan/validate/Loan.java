@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- *
+ * The <code>Loan</code> class defines a loan that was granted.
  */
 public class Loan implements Product<BigDecimal> {
 
