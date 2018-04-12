@@ -21,12 +21,14 @@ public class Sum implements Aggregate<BigDecimal> {
         super();
     }
 
+    @Override
     public void put(BigDecimal value) {
 
         result = result.add(value);
         
     }
 
+    @Override
     public BigDecimal get() {
 
         return result;
