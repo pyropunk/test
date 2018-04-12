@@ -38,7 +38,7 @@ public class Validator {
      * 
      * @return a list of aggregating classes
      */
-    private static List<Class<? extends Aggregate<BigDecimal>>> getAggregates() {
+    static List<Class<? extends Aggregate<BigDecimal>>> getAggregates() {
 
         return Arrays.asList(Sum.class, Count.class);
     }
@@ -49,7 +49,7 @@ public class Validator {
      * 
      * @return the function that extracts the values from the {@link Loan} and turns it into a {@link NetworkProductMonthGroup}
      */
-    private static Function<Loan, NetworkProductMonthGroup> getConverter() {
+    static Function<Loan, NetworkProductMonthGroup> getConverter() {
 
         return (t) -> new NetworkProductMonthGroup(t.getNetwork(), t.getProduct(), t.getDate().getMonth());
     }
@@ -84,7 +84,7 @@ public class Validator {
      * @param agg - the list of aggregate values
      * @return a CSV string listing the values of the key and then the values of the aggregates
      */
-    private static String marshallResult(NetworkProductMonthGroup group, List<BigDecimal> agg) {
+    static String marshallResult(NetworkProductMonthGroup group, List<BigDecimal> agg) {
 
         final StringBuilder b = new StringBuilder();
         b.append(String.format("%s,%s,'%.3s'", group.getNetwork(), group.getProduct(), group.getMonth()));
@@ -100,7 +100,7 @@ public class Validator {
      * @param csv - comma separated fields representing a {@link Loan}
      * @return a newly created {@link Loan} object
      */
-    private static Loan unmarshallLoan(String csv) {
+    static Loan unmarshallLoan(String csv) {
 
         final String[] fields = csv.split(",");
         return new Loan(fields[0], fields[1], LocalDate.parse(fields[2], DateTimeFormatter.ofPattern("''dd-MMM-yyyy''")), fields[3], new BigDecimal(fields[4]));
