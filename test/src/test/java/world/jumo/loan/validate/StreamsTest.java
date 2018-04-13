@@ -1,37 +1,47 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * StreamsTest.java
- *
  * Copyright 2018 Medical EDI Services (PTY) Ltd. All rights reserved.
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ */
 
 package world.jumo.loan.validate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
-
 /**
- *
+ * Test the Streams class
  */
+@SuppressWarnings("static-method")
 class StreamsTest {
 
     /**
      * Test method for {@link world.jumo.loan.validate.Streams#main(java.lang.String[])}.
+     * 
+     * @throws IOException
      */
     @Test
-    void testMain() {
+    void testMain() throws IOException {
 
-        fail("Not yet implemented");
-    }
+        Files.deleteIfExists(Paths.get("./target/Streams.csv"));
+        assertFalse(Files.exists(Paths.get("./target/Streams.csv")));
+        Streams.main(new String[] {
+            "./src/test/resources/Loans.csv", "./target/Streams.csv"
+        });
+        assertTrue(Files.exists(Paths.get("./target/Streams.csv")));
 
-    /**
-     * Test method for {@link world.jumo.loan.validate.Streams#Streams()}.
-     */
-    @Test
-    void testStreams() {
+        // cover logging
+        Streams.main(new String[] {
+            "./src/test/resources/EX.csv", "./target/WHY.csv"
+        });
 
-        fail("Not yet implemented");
-    }
-
+        // cover no args
+        Streams.main(new String[0] );
+   }
 }

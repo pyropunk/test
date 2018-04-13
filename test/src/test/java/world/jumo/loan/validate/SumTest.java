@@ -8,12 +8,15 @@ package world.jumo.loan.validate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
 
 /**
- *
+ * Test the Sum class
  */
+@SuppressWarnings("static-method")
 class SumTest {
 
     /**
@@ -22,7 +25,8 @@ class SumTest {
     @Test
     void testSum() {
 
-        fail("Not yet implemented");
+        Sum s = new Sum();
+        assertEquals(BigDecimal.ZERO, s.get());
     }
 
     /**
@@ -31,16 +35,17 @@ class SumTest {
     @Test
     void testGet() {
 
-        fail("Not yet implemented");
-    }
-
-    /**
-     * Test method for {@link world.jumo.loan.validate.Sum#put(java.math.BigDecimal)}.
-     */
-    @Test
-    void testPut() {
-
-        fail("Not yet implemented");
+        Sum s = new Sum();
+        s.put(new BigDecimal("123.456"));
+        assertEquals(new BigDecimal("123.456"), s.get());
+        s.put(new BigDecimal("123.456"));
+        assertEquals(new BigDecimal("246.912"), s.get());
+        s.put(new BigDecimal("-123.456"));
+        assertEquals(new BigDecimal("123.456"), s.get());
+        s.put(new BigDecimal("0"));
+        assertEquals(new BigDecimal("123.456"), s.get());
+        s.put(new BigDecimal("1"));
+        assertEquals(new BigDecimal("124.456"), s.get());
     }
 
 }

@@ -34,42 +34,42 @@ public class ProductAggregator<T extends Product<R>, K, R> implements Aggregator
      * <b>To use:</b>
      * 
      * <pre>
-     * class Thing extends Product&lt;Double&gt; {
+     * class Thing implements Product&lt;Double&gt; {
      * 
      *     Double amount;
      *     String value;
      * 
      *     &#64;Override
-     *     Double getAmount() {
+     *     public Double getAmount() {
      * 
      *         return amount;
      *     }
      * 
-     *     String getValue() {
+     *     public String getValue() {
      * 
      *         return value;
      *     }
      * }
      * 
-     * class Sum extends Aggregate&lt;Double&gt; {
+     * class Summ implements Aggregate&lt;Double&gt; {
      * 
      *     Double sum = Double.valueOf(0.0);
      * 
      *     &#64;Override
-     *     void put(Double d) {
+     *     public void put(Double d) {
      * 
      *         sum = Double.valueOf(sum.doubleValue() + d.doubleValue());
      *     }
      * 
      *     &#64;Override
-     *     Double get() {
+     *     public Double get() {
      * 
      *         return sum;
      *     }
      * }
      * 
      * List<Thing> things = Arrays.asList(new Thing(), new Thing());
-     * ProductAggregator pa = new ProductAggregator<>(t -> t.getValue(), Arrays.asList(Sum.class));
+     * ProductAggregator<Thing, String, Double> pa = new ProductAggregator<>(t -> t.getValue(), Arrays.asList(Summ.class));
      * for (Thing t : things) {
      *     pa.add(t);
      * }

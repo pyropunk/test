@@ -18,8 +18,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.logging.Level;
@@ -32,6 +34,7 @@ import java.util.logging.Logger;
 public class Validator {
 
     private static final Logger LOG = Logger.getLogger(Validator.class.getName());
+    private static DateTimeFormatter parser = new DateTimeFormatterBuilder().parseCaseInsensitive() .appendPattern("''dd-MMM-yyyy''").toFormatter(Locale.ENGLISH);
 
     /**
      * All aggregate classes have to return the same type.
@@ -103,10 +106,10 @@ public class Validator {
     static Loan unmarshallLoan(String csv) {
 
         final String[] fields = csv.split(",");
-        return new Loan(fields[0], fields[1], LocalDate.parse(fields[2], DateTimeFormatter.ofPattern("''dd-MMM-yyyy''")), fields[3], new BigDecimal(fields[4]));
+        return new Loan(fields[0], fields[1], LocalDate.parse(fields[2], parser), fields[3], new BigDecimal(fields[4]));
     }
 
-    private ProductAggregator<Loan, NetworkProductMonthGroup, BigDecimal> aggregator;
+    ProductAggregator<Loan, NetworkProductMonthGroup, BigDecimal> aggregator;
 
     /**
      * the Constructor creates a class of ProductAggregator

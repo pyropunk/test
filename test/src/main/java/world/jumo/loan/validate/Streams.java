@@ -84,15 +84,8 @@ public class Streams {
                 StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
         }
         catch (IOException e) {
-            LOG.log(Level.SEVERE, e, () -> String.format("Could not process file %s", args.length > 0 ? args[0] : "./Loans.scv"));
+            LOG.log(Level.SEVERE, e, () -> String.format("Failed to aggreate from file %s to %s", in, out));
         }
     }
 
-    /**
-     * 
-     */
-    public Streams() {
-
-        super();
-    }
 }
