@@ -1,2 +1,2 @@
 # test
-REST webservice and client
+Some test code
